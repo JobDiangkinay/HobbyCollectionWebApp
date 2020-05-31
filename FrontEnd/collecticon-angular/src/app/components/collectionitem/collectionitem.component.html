@@ -1,0 +1,11 @@
+<p>collectionitem works!</p>
+<div *ngIf="currentItem">
+    <div>
+        <span>
+            <h2>Item Name: {{currentItem.itemName}}</h2>
+        </span>
+    </div>
+    <div *ngIf="currentItem.photoUrl">
+        <img src={{currentItem.photoUrl}}  width="400" height="325">
+    </div>
+</div>
