@@ -1,5 +1,7 @@
 package com.hobbycollection.CollecticonApp.repository;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
@@ -25,6 +27,12 @@ public class CollectionItemRepository extends JdbcDaoSupport {
 		String sql = "SELECT * FROM collectionitems WHERE itemid = ?";
 		CollectionItem item = (CollectionItem) getJdbcTemplate().queryForObject(sql, new Object[] { Integer.parseInt(itemId) }, new CollectionItemMapper());
 		return item;
+	}
+	
+	public List<CollectionItem> getItemsByLineId(int lineId){
+		String sql = "SELECT * FROM collectionitems WHERE itemid in (select lineitem from public.collectionlinerefitems where lineid=?)";
+		List<CollectionItem> items = (List<CollectionItem>) getJdbcTemplate().query(sql, new Object[] { lineId }, new CollectionItemMapper());
+		return items;
 	}
 
 }
