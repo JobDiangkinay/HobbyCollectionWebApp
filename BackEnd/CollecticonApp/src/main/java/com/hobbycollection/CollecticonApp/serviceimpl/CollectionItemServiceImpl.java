@@ -18,4 +18,9 @@ public class CollectionItemServiceImpl implements CollectionItemService{
 		return collectionItemRepository.getItemById(itemId);
 	}
 
+	@Override
+	public CollectionItem insertNewItem(CollectionItem collectionItem) {
+		return collectionItemRepository.insertNewItem(collectionItem);
+	}
+
 }
