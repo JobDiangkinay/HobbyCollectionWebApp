@@ -1,5 +1,7 @@
 package com.hobbycollection.CollecticonApp.repository;
 
+import java.sql.Timestamp;
+
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
@@ -25,7 +27,7 @@ public class CollectionLineRepository extends JdbcDaoSupport {
 	}
 	
 	public CollectionLine getLineById(int lineId){
-		String sql = "SELECT * FROM collectionlines WHERE itemid = ?";
+		String sql = "SELECT * FROM collectionlines WHERE lineId = ?";
 		CollectionLine line = (CollectionLine) getJdbcTemplate().queryForObject(sql, new Object[] { lineId }, new CollectionLineMapper());
 		return line;
 	}
@@ -34,5 +36,17 @@ public class CollectionLineRepository extends JdbcDaoSupport {
 		CollectionLine line = getLineById(lineId);
 		line.setLineItems(collectionItemRepository.getItemsByLineId(line.getLineId()));
 		return line;
+	}
+	
+	public CollectionLine insertNewCollectionLine(CollectionLine collectionLine) {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		String sql = "INSERT INTO collectionlines (linename,timecreated,timeupdated) VALUES (?,?,?)";
+		getJdbcTemplate().update(sql, new Object[]{collectionLine.getLineName(),timestamp,timestamp});
+		return collectionLine;
+	}
+	
+	public void insertNewLineItemMapping(int lineId, int itemId) {
+		String sql = "INSERT INTO collectionlinerefitems ( lineid, lineitem ) VALUES ( ?, ? )";
+		getJdbcTemplate().update(sql, new Object[]{lineId,itemId});
 	}
 }

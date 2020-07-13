@@ -1,5 +1,7 @@
 package com.hobbycollection.CollecticonApp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +23,11 @@ public class CollectionItemController {
 	@GetMapping("/{id}")
 	public CollectionItem getItemById(@PathVariable String id) {
 		return collectionItemService.getItemById(id);
+	}
+	
+	@GetMapping("/all")
+	public List<CollectionItem> getAllItems(){
+		return collectionItemService.getAllItem();
 	}
 	
 	@PostMapping("/addItem")

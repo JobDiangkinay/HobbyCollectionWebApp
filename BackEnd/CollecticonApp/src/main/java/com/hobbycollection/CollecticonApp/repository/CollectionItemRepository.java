@@ -35,6 +35,12 @@ public class CollectionItemRepository extends JdbcDaoSupport {
 		return items;
 	}
 	
+	public List<CollectionItem> getAllItems(){
+		String sql = "SELECT * FROM collectionitems";
+		List<CollectionItem> items = (List<CollectionItem>) getJdbcTemplate().query(sql, new Object[] {}, new CollectionItemMapper());
+		return items;
+	}
+	
 	public CollectionItem insertNewItem(CollectionItem collectionItem) {
 		String sql = "INSERT INTO collectionitems (itemname, brandname, yearreleased, suggestedretailprice, photourl) VALUES (?, ?, ?, ?, ?)" ;
 		getJdbcTemplate().update(sql, new Object[]{collectionItem.getItemName(),collectionItem.getBrandName(),collectionItem.getYearReleased(),collectionItem.getSuggestedRetailPrice(),collectionItem.getPhotoUrl()});

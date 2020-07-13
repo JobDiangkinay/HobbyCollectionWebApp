@@ -1,5 +1,7 @@
 package com.hobbycollection.CollecticonApp.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,19 @@ public class CollectionItemServiceImpl implements CollectionItemService{
 	@Override
 	public CollectionItem insertNewItem(CollectionItem collectionItem) {
 		return collectionItemRepository.insertNewItem(collectionItem);
+	}
+
+	@Override
+	public List<CollectionItem> getAllItem() {
+		return collectionItemRepository.getAllItems();
+	}
+
+	@Override
+	public boolean checkIfItemExists(String itemId) {
+		if (getItemById(itemId) != null) {
+			return true;
+		}
+		else return false;
 	}
 
 }
