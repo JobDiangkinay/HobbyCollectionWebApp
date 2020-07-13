@@ -1,9 +1,13 @@
 <p>collectionitem works!</p>
 <div *ngIf="currentItem">
     <div>
-        <span>
-            <h2>Item Name: {{currentItem.itemName}}</h2>
-        </span>
+        <table>
+        <tr>
+            <td>Item Name: </td><td>{{currentItem.itemName}}</td>
+        </tr>
+        <tr><td>Brand: </td><td>{{currentItem.brandName}}</td></tr>
+        <tr><td>SRP: </td><td>${{currentItem.suggestedRetailPrice}}</td></tr>
+        </table>
     </div>
     <div *ngIf="currentItem.photoUrl">
         <img src={{currentItem.photoUrl}}  width="400" height="325">

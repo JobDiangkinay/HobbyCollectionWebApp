@@ -1,0 +1,11 @@
+<p>collection-list works!</p>
+<div *ngIf="allCollectionItems">
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let item of allCollectionItems" class="col-xs-3 tile item" [routerLink]="['/Collecticon/List',item.itemId]">
+                <div>{{item.brandName}}</div>
+                <div>{{item.itemName}}</div>
+            </div>
+        </div>
+    </div>
+</div>

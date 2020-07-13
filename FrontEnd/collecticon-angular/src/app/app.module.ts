@@ -6,11 +6,13 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CollectionitemComponent } from './components/collectionitem/collectionitem.component';
+import { CollectionListComponent } from './components/collection-list/collection-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CollectionitemComponent
+    CollectionitemComponent,
+    CollectionListComponent
   ],
   imports: [
     BrowserModule,

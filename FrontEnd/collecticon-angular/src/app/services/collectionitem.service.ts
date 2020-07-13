@@ -8,6 +8,7 @@ import {CollectionItem} from '../models/collectionitem';
 })
 export class CollectionitemService {
   private collectionItemUrl = "http://localhost:8182/Collecticon/item/";
+  private collectionAllItemUrl = "http://localhost:8182/Collecticon/item/all/";
 
 
   constructor(private httpClient:HttpClient) { }
@@ -15,6 +16,11 @@ export class CollectionitemService {
   getCollectionItemById(itemId: String){
     const url = `${this.collectionItemUrl}/${itemId}`;
     return this.httpClient.get<CollectionItem>(url);
+  }
+
+  getCollectionAllItem(){
+    const url = `${this.collectionAllItemUrl}`;
+    return this.httpClient.get<CollectionItem[]>(url);
   }
 
 }
