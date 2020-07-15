@@ -33,6 +33,7 @@ public class CollectionLineController {
 		if(collectionLineService.addnewLineItemMapping(lineId, itemId)) {
 			return "SUCCESS";
 		}
+		System.out.println("Git tesst");
 		return "FAILED";
 	}
 
